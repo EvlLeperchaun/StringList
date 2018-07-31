@@ -1,0 +1,38 @@
+Goal: Create a class which can be used as a string list. Name it whatever you want. It needs to have the following functionality:
+
+Features:
+- Maintain an unspecified number of strings
+- Maintain proper order of elements
+- Allow duplicates
+
+Actions (methods):
+- Add a string to the list
+- Remove a string from the list
+- Check to see if some string is in the list, if so return first index
+
+Optional, harder objectives:
+- Allow sorting via a sort() method. The parameter for this method should be either a comparator or a lambda.
+- Create a subclass which does not allow duplicates
+
+SUPER stretch goals:
+- Provide a filter([some condition]) method that returns a new list without elements that do not satisfy a condition
+- Provide a map([some transformation]) method that returns a new list of strings with the applied transformation
+
+Sample usage:
+// Notice we don't have to specify the amout of elements it contains
+StringList newList = new StringList();
+
+newList.add("Josh");
+newList.add("Bryan");
+
+// This should be handled correctly - aka should print out the strings
+System.out.println(newList);
+
+int joshIndex = newList.indexOf("Josh");
+
+// This removes the string at the given index
+newList.remove(joshIndex);
+
+System.out.println(newList);
+
+Create extension of customlist that handles duplicates
