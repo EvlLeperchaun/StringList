@@ -10,6 +10,8 @@ public class EntryPoint {
         System.out.println(list2.print());
         System.out.printf("list1 has %d elements\n", list1.size());
         System.out.printf("list2 has %d elements\n",list2.size());
+        list1.add("test");
+        list1.print();
 
     }
 }
