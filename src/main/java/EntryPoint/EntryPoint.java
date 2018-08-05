@@ -11,9 +11,13 @@ public class EntryPoint {
         list1.add("test3");
         String x="test4";
         list1.add(x);
+        list2.add("Josh");
+        list2.add("Bryan");
         for (int i = 0; i < list1.size(); i++) {
             System.out.printf("Value:%s\n", list1.getValue(i));
-
+        }
+        for (int i = 0; i < list2.size(); i++) {
+            System.out.printf("Value:%s\n", list2.getValue(i));
         }
     }
 }
