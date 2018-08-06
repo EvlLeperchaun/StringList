@@ -33,8 +33,6 @@ public class CustomList {
             this.currentIndex++;
         } else {
             //Index is full.
-            // creates temp array with new index
-            //iterates through current array and copies values
             String[] tempArray = new String[this.size + 1];
             for (int i = 0; i < this.size; i++) {
                 tempArray[i] = this.array[i];
@@ -45,32 +43,31 @@ public class CustomList {
             this.currentIndex++;
             //reiterates old array with new size
             this.array = new String[this.size];
-            for (int i = 0; i < this.size; i++) {
-                this.array[i] = tempArray[i];
-            }
+            this.array=tempArray;
         }
+
     }
 
     public void remove(int index) {
-        String[] tempArray=new String[this.size];
-        for (int i=0;i<this.size;i++){
-            if (i!=index && i<index){
-                tempArray[i]=this.array[i];
-            } else if (i!=index && i>index){
-                tempArray[i-1]=this.array[i];
+        String[] tempArray = new String[this.size];
+        for (int i = 0; i < this.size; i++) {
+            if (i != index && i < index) {
+                tempArray[i] = this.array[i];
+            } else if (i != index && i > index) {
+                tempArray[i - 1] = this.array[i];
             }
         }
         this.size--;
         this.currentIndex--;
-        this.array=new String[this.size];
-        this.array=tempArray;
+        this.array = new String[this.size];
+        this.array = tempArray;
     }
 
     public int indexOf(String value) {
-        Integer index=null;
-        for (int i=0;i<this.size;i++){
-            if (this.array[i]==value){
-                index=i;
+        Integer index = null;
+        for (int i = 0; i < this.size; i++) {
+            if (this.array[i].equals(value)) {
+                index = i;
             }
         }
         return index;
