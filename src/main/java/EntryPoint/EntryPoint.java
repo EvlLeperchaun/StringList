@@ -1,6 +1,12 @@
 package EntryPoint;
 
 import ListProject.CustomList;
+import org.junit.Test;
+
+import java.util.Arrays;
+import java.util.stream.Collectors;
+
+import static junit.framework.TestCase.assertEquals;
 
 public class EntryPoint {
     public static void main(String args[]) {
@@ -16,27 +22,66 @@ public class EntryPoint {
 
         //test add
         System.out.printf("Add.\n");
-        for (int i = 0; i < list1.size(); i++) {
+        for (int i = 0; i < list1.length(); i++) {
             System.out.printf("Value:%s\n", list1.getValue(i));
         }
-        for (int i = 0; i < list2.size(); i++) {
+        for (int i = 0; i < list2.length(); i++) {
             System.out.printf("Value:%s\n", list2.getValue(i));
         }
+        System.out.printf("Current size: %d\n",list1.size());
 
         //test remove
         System.out.printf("Remove Index 0.\n");
         list1.remove(0);
-        for (int i = 0; i < list1.size(); i++) {
+        for (int i = 0; i < list1.length(); i++) {
             System.out.printf("Value:%s\n", list1.getValue(i));
         }
+        System.out.printf("Current size: %d\n",list1.size());
 
         //test add after remove
         System.out.printf("Add back after remove.\n");
         list1.add("test");
-        for (int i = 0; i < list1.size(); i++) {
+        for (int i = 0; i < list1.length(); i++) {
             System.out.printf("Value:%s\n", list1.getValue(i));
         }
+        System.out.printf("Current size: %d\n",list1.size());
+
         //test index
         System.out.printf("The index of test is %d.\n",list1.indexOf("test"));
+
+        //test no index found
+        System.out.printf("Looking for index asdf: %d\n",list1.indexOf("asdf"));
+
+        //get value out of bounds
+        System.out.printf("Looking for index out of bounds: %s\n",list1.getValue(-1));
+    }
+
+    @Test
+    public void test() {
+        String[] someArray = new String[3];
+        someArray[0] = "one11";
+        someArray[1] = "one12";
+        someArray[2] = "one13";
+
+        String[] tempArray = new String[5];
+        tempArray[0] = "one21";
+        tempArray[1] = "one22";
+        tempArray[2] = "one23";
+        tempArray[3] = "one24";
+        tempArray[4] = "one25";
+
+        String[] tempArray2 = new String[1];
+        tempArray2[0] = "one31";
+
+        System.out.println(Arrays.stream(someArray).collect(Collectors.joining(",")));
+        assertEquals(someArray.length, 3);
+
+        someArray = tempArray;
+        System.out.println(Arrays.stream(someArray).collect(Collectors.joining(",")));
+        assertEquals(someArray.length, 5);
+
+        someArray=tempArray2;
+        System.out.println(Arrays.stream(someArray).collect(Collectors.joining(",")));
+        assertEquals(someArray.length, 1);
     }
 }
