@@ -2,19 +2,19 @@ package ListProject;
 
 public class CustomList {
     private int size;
+    private int currentIndex;
     private String[] array;
-    private boolean isEmpty;
 
     public CustomList() {
         this.size = 1;
+        this.currentIndex = 0;
         this.array = new String[this.size];
-        isEmpty = true;
     }
 
     public CustomList(int size) {
         this.size = size;
+        this.currentIndex = 0;
         this.array = new String[this.size];
-        isEmpty = true;
     }
 
 
@@ -27,57 +27,53 @@ public class CustomList {
     }
 
     public void add(String newString) {
-        boolean stop = false;
-        try {
-            //if current array is empty
-            if (this.isEmpty == true) {
-                for (int i = 0; i < this.size; i++) {
-                    //replaces first null with new string
-                    if (this.array[i] == null && stop == false) {
-                        this.array[i] = newString;
-                        stop = true;
-                    }
-                    //checks if current i is last entry and isn't null
-                    if (i+1==this.size && this.array[i] != null) {
-                        this.isEmpty = false;
-                    }
-
-                }
-                //if current array is full
-            } else if (this.isEmpty == false) {
-                //creates temp array with new index
-                String[] tempArray = new String[this.size + 1];
-                //iterates through current array and copies values
-                for (int i = 0; i < this.size; i++) {
-                    tempArray[i] = this.array[i];
-                }
-                //increase size and assigns the new value
-                this.size++;
-                tempArray[this.size - 1] = newString;
-                //overwrites old array with new size
-                this.array = new String[this.size];
-                for (int i = 0; i < this.size; i++) {
-                    this.array[i] = tempArray[i];
-                }
+        //Index is not full
+        if (this.currentIndex < this.size) {
+            this.array[this.currentIndex] = newString;
+            this.currentIndex++;
+        } else {
+            //Index is full.
+            // creates temp array with new index
+            //iterates through current array and copies values
+            String[] tempArray = new String[this.size + 1];
+            for (int i = 0; i < this.size; i++) {
+                tempArray[i] = this.array[i];
             }
-
-
-        } catch (IndexOutOfBoundsException e) {
-            System.out.println("Index out of bounds.");
-        } catch (NullPointerException e) {
-            System.out.println("Null pointer exception");
-        } catch (Exception e) {
-            System.out.println("Other Exception thrown.");
+            //increase size and index and assigns the new value
+            tempArray[this.currentIndex] = newString;
+            this.size++;
+            this.currentIndex++;
+            //reiterates old array with new size
+            this.array = new String[this.size];
+            for (int i = 0; i < this.size; i++) {
+                this.array[i] = tempArray[i];
+            }
         }
-
     }
 
-    public String delete(int index) {
-        return "String";
+    public void remove(int index) {
+        String[] tempArray=new String[this.size];
+        for (int i=0;i<this.size;i++){
+            if (i!=index && i<index){
+                tempArray[i]=this.array[i];
+            } else if (i!=index && i>index){
+                tempArray[i-1]=this.array[i];
+            }
+        }
+        this.size--;
+        this.currentIndex--;
+        this.array=new String[this.size];
+        this.array=tempArray;
     }
 
     public int indexOf(String value) {
-        return 1;
+        Integer index=null;
+        for (int i=0;i<this.size;i++){
+            if (this.array[i]==value){
+                index=i;
+            }
+        }
+        return index;
     }
 
     public String getValue(int index) {
