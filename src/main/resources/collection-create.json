@@ -1,0 +1,424 @@
+{
+  "collections": {
+    "collectionNames": [
+      "productthd1",
+      "metadatathd1",
+      "contentthd1",
+      "rulelivethd1",
+      "rulelivethd2",
+      "ruleprethd1",
+      "ruleprethd2",
+      "rankthd1",
+      "digitalcthd1",
+      "paintthd1"
+    ],
+    "productthd1": {
+      "collectionRestore": {
+        "restore": false,
+        "restoreAtCreate": false,
+        "restoreTimeOutSec": "3600",
+        "backupName": "productthd1",
+        "backupPath": "/opt/data/backup"
+      },
+      "repFactor": "1",
+      "numShard": "3",
+      "zkConfigSet": "productthd1Conf",
+      "shardName": [
+        "shard1",
+        "shard2",
+        "shard3"
+      ],
+      "alias": [
+        "productthd_offline",
+        "productthd_online"
+      ],
+      "nodeSetParams": {
+        "empty": true
+      },
+      "routing": {
+        "customRouting": true,
+        "routerFieldParams": "&router.field=parentId"
+      },
+      "infra": {
+        "zkDetails": {
+          "zkHost": "internal-zookeeper-product-<region>.<project-id>.gcp.homedepot.com",
+          "zkPort": "2181"
+        },
+        "cloud": true,
+        "provider": "gcp",
+        "create": false,
+        "workflowID": "test",
+        "artifactID": [
+          "zookeeper",
+          "solr"
+        ],
+        "application": "solr",
+        "release": "r1"
+      }
+    },
+    "metadatathd1": {
+      "collectionRestore": {
+        "restore": false,
+        "restoreAtCreate": false,
+        "restoreTimeOutSec": "3600",
+        "backupName": "metadatathd1",
+        "backupPath": "/opt/data/backup"
+      },
+      "repFactor": "1",
+      "numShard": "1",
+      "zkConfigSet": "metadatathd1Conf",
+      "shardName": [
+        "shard1"
+      ],
+      "alias": [
+        "metadatathd_offline",
+        "metadatathd_online"
+      ],
+      "nodeSetParams": {
+        "empty": true
+      },
+      "routing": {
+        "customRouting": false
+      },
+      "infra": {
+        "zkDetails": {
+          "zkHost": "internal-zookeeper-product-<region>.<project-id>.gcp.homedepot.com",
+          "zkPort": "2181"
+        },
+        "cloud": true,
+        "provider": "gcp",
+        "create": false,
+        "workflowID": "test",
+        "artifactID": [
+          "zookeeper",
+          "solr"
+        ],
+        "application": "solr",
+        "release": "r1"
+      }
+    },
+    "rulelivethd1": {
+      "collectionRestore": {
+        "restore": false,
+        "restoreAtCreate": false,
+        "restoreTimeOutSec": "3600",
+        "backupName": "rulelivethd1",
+        "backupPath": "/opt/data/backup"
+      },
+      "repFactor": "1",
+      "numShard": "1",
+      "zkConfigSet": "rulelivethd1Conf",
+      "shardName": [
+        "shard1"
+      ],
+      "alias": [
+        "rulelivethd_online"
+      ],
+      "nodeSetParams": {
+        "empty": true
+      },
+      "routing": {
+        "customRouting": false
+      },
+      "infra": {
+        "zkDetails": {
+          "zkHost": "internal-zookeeper-rule-<region>.<project-id>.gcp.homedepot.com",
+          "zkPort": "2181"
+        },
+        "cloud": true,
+        "provider": "gcp",
+        "create": false,
+        "workflowID": "test",
+        "artifactID": [
+          "zookeeper",
+          "solr"
+        ],
+        "application": "solr",
+        "release": "r1"
+      }
+    },
+    "rulelivethd2": {
+      "collectionRestore": {
+        "restore": false,
+        "restoreAtCreate": false,
+        "restoreTimeOutSec": "3600",
+        "backupName": "rulelivethd2",
+        "backupPath": "/opt/data/backup"
+      },
+      "repFactor": "1",
+      "numShard": "1",
+      "shardName": [
+        "shard1"
+      ],
+      "zkConfigSet": "rulelivethd2Conf",
+      "alias": [
+        "rulelivethd_offline"
+      ],
+      "nodeSetParams": {
+        "empty": true
+      },
+      "routing": {
+        "customRouting": false
+      },
+      "infra": {
+        "zkDetails": {
+          "zkHost": "internal-zookeeper-rule-<region>.<project-id>.gcp.homedepot.com",
+          "zkPort": "2181"
+        },
+        "cloud": true,
+        "provider": "gcp",
+        "create": false,
+        "workflowID": "test",
+        "artifactID": [
+          "zookeeper",
+          "solr"
+        ],
+        "application": "solr",
+        "release": "r1"
+      }
+    },
+    "ruleprethd1": {
+      "collectionRestore": {
+        "restore": false,
+        "restoreAtCreate": false,
+        "restoreTimeOutSec": "3600",
+        "backupName": "ruleprethd1",
+        "backupPath": "/opt/data/backup"
+      },
+      "repFactor": "1",
+      "numShard": "1",
+      "shardName": [
+        "shard1"
+      ],
+      "zkConfigSet": "ruleprethd1Conf",
+      "alias": [
+        "ruleprethd_online"
+      ],
+      "nodeSetParams": {
+        "empty": true
+      },
+      "routing": {
+        "customRouting": false
+      },
+      "infra": {
+        "zkDetails": {
+          "zkHost": "internal-zookeeper-rule-<region>.<project-id>.gcp.homedepot.com",
+          "zkPort": "2181"
+        },
+        "cloud": true,
+        "provider": "gcp",
+        "create": false,
+        "workflowID": "test",
+        "artifactID": [
+          "zookeeper",
+          "solr"
+        ],
+        "application": "solr",
+        "release": "r1"
+      }
+    },
+    "ruleprethd2": {
+      "collectionRestore": {
+        "restore": false,
+        "restoreAtCreate": false,
+        "restoreTimeOutSec": "3600",
+        "backupName": "ruleprethd2",
+        "backupPath": "/opt/data/backup"
+      },
+      "repFactor": "1",
+      "numShard": "1",
+      "zkConfigSet": "ruleprethd2Conf",
+      "shardName": [
+        "shard1"
+      ],
+      "alias": [
+        "ruleprethd_offline"
+      ],
+      "nodeSetParams": {
+        "empty": true
+      },
+      "routing": {
+        "customRouting": false
+      },
+      "infra": {
+        "zkDetails": {
+          "zkHost": "internal-zookeeper-rule-<region>.<project-id>.gcp.homedepot.com",
+          "zkPort": "2181"
+        },
+        "cloud": true,
+        "provider": "gcp",
+        "create": false,
+        "workflowID": "test",
+        "artifactID": [
+          "zookeeper",
+          "solr"
+        ],
+        "application": "solr",
+        "release": "r1"
+      }
+    },
+    "contentthd1": {
+      "collectionRestore": {
+        "restore": false,
+        "restoreAtCreate": false,
+        "restoreTimeOutSec": "3600",
+        "backupName": "contentthd1",
+        "backupPath": "/opt/data/backup"
+      },
+      "repFactor": "1",
+      "numShard": "1",
+      "zkConfigSet": "contentthd1Conf",
+      "shardName": [
+        "shard1"
+      ],
+      "alias": [
+        "contentthd_offline",
+        "contentthd_online"
+      ],
+      "nodeSetParams": {
+        "empty": true
+      },
+      "routing": {
+        "customRouting": false
+      },
+      "infra": {
+        "zkDetails": {
+          "zkHost": "internal-zookeeper-rule-<region>.<project-id>.gcp.homedepot.com",
+          "zkPort": "2181"
+        },
+        "cloud": true,
+        "provider": "gcp",
+        "create": false,
+        "workflowID": "test",
+        "artifactID": [
+          "zookeeper",
+          "solr"
+        ],
+        "application": "solr",
+        "release": "r1"
+      }
+    },
+    "rankthd1": {
+      "collectionRestore": {
+        "restore": true,
+        "restoreAtCreate": true,
+        "restoreTimeOutSec": "3600",
+        "backupName": "myAggr1",
+        "backupPath": "gs://<project-id>-esp/fusion/backup"
+      },
+      "repFactor": "1",
+      "numShard": "1",
+      "shardName": [
+        "shard1"
+      ],
+      "alias": [
+        "rankthd_offline",
+        "rankthd_online"
+      ],
+      "nodeSetParams": {
+        "empty": true
+      },
+      "routing": {
+        "customRouting": false
+      },
+      "infra": {
+        "zkDetails": {
+          "zkHost": "internal-zookeeper-fusion-<region>.<project-id>.gcp.homedepot.com",
+          "zkPort": "2181"
+        },
+        "cloud": true,
+        "provider": "gcp",
+        "create": false,
+        "workflowID": "test",
+        "artifactID": [
+          "zookeeper",
+          "solr"
+        ],
+        "application": "solr",
+        "release": "r1"
+      }
+    },
+    "digitalcthd1": {
+      "collectionRestore": {
+        "restore": false,
+        "restoreAtCreate": false,
+        "restoreTimeOutSec": "3600",
+        "backupName": "digitalcthd1",
+        "backupPath": "/opt/data/backup"
+      },
+      "repFactor": "1",
+      "numShard": "1",
+      "zkConfigSet": "digitalcthd1Conf",
+      "shardName": [
+        "shard1"
+      ],
+      "alias": [
+        "digitalcthd_offline",
+        "digitalcthd_online"
+      ],
+      "nodeSetParams": {
+        "empty": true
+      },
+      "routing": {
+        "customRouting": false
+      },
+      "infra": {
+        "zkDetails": {
+          "zkHost": "internal-zookeeper-product-<region>.<project-id>.gcp.homedepot.com",
+          "zkPort": "2181"
+        },
+        "cloud": true,
+        "provider": "gcp",
+        "create": false,
+        "workflowID": "test",
+        "artifactID": [
+          "zookeeper",
+          "solr"
+        ],
+        "application": "solr",
+        "release": "r1"
+      }
+    },
+    "paintthd1": {
+      "collectionRestore": {
+        "restore": false,
+        "restoreAtCreate": false,
+        "restoreTimeOutSec": "3600",
+        "backupName": "paintthd1",
+        "backupPath": "/opt/data/backup"
+      },
+      "repFactor": "1",
+      "numShard": "1",
+      "zkConfigSet": "paintthd1Conf",
+      "shardName": [
+        "shard1"
+      ],
+      "alias": [
+        "paintthd_offline",
+        "paintthd_online"
+      ],
+      "nodeSetParams": {
+        "empty": true
+      },
+      "routing": {
+        "customRouting": false
+      },
+      "infra": {
+        "zkDetails": {
+          "zkHost": "internal-zookeeper-product-<region>.<project-id>.gcp.homedepot.com",
+          "zkPort": "2181"
+        },
+        "cloud": true,
+        "provider": "gcp",
+        "create": false,
+        "workflowID": "test",
+        "artifactID": [
+          "zookeeper",
+          "solr"
+        ],
+        "application": "solr",
+        "release": "r1"
+      }
+    },
+  }
+}

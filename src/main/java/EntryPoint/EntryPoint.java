@@ -1,6 +1,12 @@
 package EntryPoint;
 
 import ListProject.CustomList;
+import org.junit.Test;
+
+import java.util.Arrays;
+import java.util.stream.Collectors;
+
+import static junit.framework.TestCase.assertEquals;
 
 public class EntryPoint {
     public static void main(String args[]) {
@@ -38,5 +44,34 @@ public class EntryPoint {
         }
         //test index
         System.out.printf("The index of test is %d.\n",list1.indexOf("test"));
+    }
+
+    @Test
+    public void test() {
+        String[] someArray = new String[3];
+        someArray[0] = "one11";
+        someArray[1] = "one12";
+        someArray[2] = "one13";
+
+        String[] tempArray = new String[5];
+        tempArray[0] = "one21";
+        tempArray[1] = "one22";
+        tempArray[2] = "one23";
+        tempArray[3] = "one24";
+        tempArray[4] = "one25";
+
+        String[] tempArray2 = new String[1];
+        tempArray2[0] = "one31";
+
+        System.out.println(Arrays.stream(someArray).collect(Collectors.joining(",")));
+        assertEquals(someArray.length, 3);
+
+        someArray = tempArray;
+        System.out.println(Arrays.stream(someArray).collect(Collectors.joining(",")));
+        assertEquals(someArray.length, 5);
+
+        someArray=tempArray2;
+        System.out.println(Arrays.stream(someArray).collect(Collectors.joining(",")));
+        assertEquals(someArray.length, 1);
     }
 }
