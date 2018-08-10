@@ -86,4 +86,23 @@ public class CustomList {
     public int size() {
         return this.size;
     }
+
+    public void sort() {
+        String[] tempArray = this.array;
+        String x;
+        String y;
+        //first for loop checks first index
+        for (int i = 0; i < this.size; i++) {
+            //second for loop sorts temp
+            for (int j = 0; j < this.size; j++) {
+                if (j + 1 < this.size && tempArray[j + 1].compareTo(tempArray[j]) < 0) {
+                    x = tempArray[j];
+                    y = tempArray[j + 1];
+                    tempArray[j] = y;
+                    tempArray[j + 1] = x;
+                }
+            }
+        }
+        this.array = tempArray;
+    }
 }

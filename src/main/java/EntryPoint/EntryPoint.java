@@ -10,7 +10,7 @@ import static junit.framework.TestCase.assertEquals;
 
 public class EntryPoint {
     public static void main(String args[]) {
-        CustomList list1 = new CustomList();
+        /*CustomList list1 = new CustomList();
         CustomList list2 = new CustomList(2);
         list1.add("test");
         list1.add("test2");
@@ -54,6 +54,19 @@ public class EntryPoint {
 
         //get value out of bounds
         System.out.printf("Looking for index out of bounds: %s\n",list1.getValue(-1));
+        */
+        CustomList list1=new CustomList(10);
+        list1.add("5");
+        list1.add("3");
+        list1.add("1");
+        list1.add("2");
+        list1.add("4");
+        list1.add("5");
+        list1.sort();
+        System.out.println("Sorted:\n");
+        for (int i = 0; i < list1.length(); i++) {
+            System.out.printf("Value:%s\n", list1.getValue(i));
+        }
     }
 
     @Test
