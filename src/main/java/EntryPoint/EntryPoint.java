@@ -86,15 +86,15 @@ public class EntryPoint {
         String[] tempArray2 = new String[1];
         tempArray2[0] = "one31";
 
-        System.out.println(Arrays.stream(someArray).collect(Collectors.joining(",")));
+        System.out.println(String.join(",", someArray));
         assertEquals(someArray.length, 3);
 
         someArray = tempArray;
-        System.out.println(Arrays.stream(someArray).collect(Collectors.joining(",")));
+        System.out.println(String.join(",", someArray));
         assertEquals(someArray.length, 5);
 
         someArray=tempArray2;
-        System.out.println(Arrays.stream(someArray).collect(Collectors.joining(",")));
+        System.out.println(String.join(",", someArray));
         assertEquals(someArray.length, 1);
     }
 }
