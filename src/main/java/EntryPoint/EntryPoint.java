@@ -66,7 +66,7 @@ public class EntryPoint {
             list1.add(Integer.toString(i));
         }
         long startTime=System.currentTimeMillis();
-        list1.sort(AlphabeticalSort());
+        list1.sort(new AlphabeticalSort());
         long endTime=System.currentTimeMillis();
         System.out.println("Sorted:\n");
         for (int i = 0; i < list1.length(); i++) {
