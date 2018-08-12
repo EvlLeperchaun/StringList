@@ -1,5 +1,10 @@
 package ListProject;
 
+
+import Interfaces.CustomComparators;
+
+import java.util.Comparator;
+
 public class CustomList {
     private int capacity; //total number of items that can be held in array
     private int currentIndex; //current index of array
@@ -75,7 +80,6 @@ public class CustomList {
     }
 
     public String getValue(int index) {
-
         return (index >= 0 && index < this.capacity) ? this.array[index] : "";
     }
 
@@ -88,21 +92,52 @@ public class CustomList {
     }
 
     public void sort() {
+        //default: sort alpha
         String[] tempArray = this.array;
+        String current;
+
+        for (int i = 0; i < this.size; i++) {
+            int j = i;
+            current = this.array[i];
+            while (j > 0 && current.compareTo(tempArray[j - 1]) < 0) {
+                tempArray[j] = tempArray[j - 1];
+                tempArray[j - 1] = current;
+                j--;
+            }
+        }
+
+        this.array = tempArray;
+    }
+
+    public void sort(CustomComparators c) {
+        /*String[] tempArray = this.array;
         String x;
         String y;
-        //first for loop checks first index
+
         for (int i = 0; i < this.size; i++) {
-            //second for loop sorts temp
             for (int j = 0; j < this.size; j++) {
-                if (j + 1 < this.size && tempArray[j + 1].compareTo(tempArray[j]) < 0) {
+                if (j + 1 < this.size && c.compare(this.array[j], this.array[j + 1]) > 0) {
                     x = tempArray[j];
                     y = tempArray[j + 1];
                     tempArray[j] = y;
                     tempArray[j + 1] = x;
                 }
             }
+        }*/
+        String[] tempArray = this.array;
+        String current;
+
+        for (int i = 0; i < this.size; i++) {
+            int j = i;
+            current = this.array[i];
+            while (j > 0 && c.compare(current,tempArray[j - 1]) < 0) {
+                tempArray[j] = tempArray[j - 1];
+                tempArray[j - 1] = current;
+                j--;
+            }
         }
+
         this.array = tempArray;
     }
 }
+

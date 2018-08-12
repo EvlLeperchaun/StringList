@@ -1,10 +1,13 @@
 package EntryPoint;
 
+import Comparators.AlphabeticalSort;
 import ListProject.CustomList;
 import org.junit.Test;
 
+
 import java.util.Arrays;
 import java.util.stream.Collectors;
+
 
 import static junit.framework.TestCase.assertEquals;
 
@@ -12,11 +15,13 @@ public class EntryPoint {
     public static void main(String args[]) {
         /*CustomList list1 = new CustomList();
         CustomList list2 = new CustomList(2);
-        list1.add("test");
-        list1.add("test2");
-        list1.add("test3");
-        String x="test4";
+        list1.add("4");
+        list1.add("6");
+        list1.add("2");
+        String x="1";
         list1.add(x);
+        list1.add("3");
+        list1.add("5");
         list2.add("Josh");
         list2.add("Bryan");
 
@@ -55,18 +60,19 @@ public class EntryPoint {
         //get value out of bounds
         System.out.printf("Looking for index out of bounds: %s\n",list1.getValue(-1));
         */
-        CustomList list1=new CustomList(10);
-        list1.add("5");
-        list1.add("3");
-        list1.add("1");
-        list1.add("2");
-        list1.add("4");
-        list1.add("5");
-        list1.sort();
+        int numberOfEntries=50000;
+        CustomList list1=new CustomList(numberOfEntries);
+        for (int i = numberOfEntries; i > 0; i--) {
+            list1.add(Integer.toString(i));
+        }
+        long startTime=System.currentTimeMillis();
+        list1.sort(AlphabeticalSort());
+        long endTime=System.currentTimeMillis();
         System.out.println("Sorted:\n");
         for (int i = 0; i < list1.length(); i++) {
             System.out.printf("Value:%s\n", list1.getValue(i));
         }
+        System.out.printf("Time: %d",endTime-startTime);
     }
 
     @Test
