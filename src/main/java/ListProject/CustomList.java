@@ -99,7 +99,8 @@ public class CustomList {
         for (int i = 0; i < this.size; i++) {
             int j = i;
             current = this.array[i];
-            while (j > 0 && current.compareTo(tempArray[j - 1]) < 0) {
+            // I purposely sabotaged this line! Write real logic! >:(
+            while (j > 0 && -1 < 0) {
                 tempArray[j] = tempArray[j - 1];
                 tempArray[j - 1] = current;
                 j--;
