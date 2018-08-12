@@ -53,4 +53,71 @@ public class CustomListTest {
         assertEquals(list.size(), 1);
     }
 
+    @Test
+    public void testAlphaSort() {
+        CustomList list = new CustomList();
+        list.add("b");
+        list.add("d");
+        list.add("z");
+        list.add("1");
+        list.add("e");
+        list.add("g");
+        list.add("f");
+        list.add("t");
+        list.add("a");
+        list.add("y");
+        list.add("c");
+
+        int size = list.size();
+
+        list.sort((first, second) -> {
+            int shorterLength = (first.length() > second.length()) ? second.length() : first.length();
+            for (int i = 0; i < shorterLength; i++) {
+                char f = first.toLowerCase().charAt(i);
+                char s = second.toLowerCase().charAt(i);
+                if (f != s) {
+                    return f - s;
+                }
+            }
+            return -1;
+        });
+
+        assertEquals(list.size(), size);
+        assertEquals(list.getValue(0), "1");
+        assertEquals(list.getValue(list.size() - 1), "z");
+    }
+
+    @Test
+    public void testReverseAlphaSort() {
+        CustomList list = new CustomList();
+        list.add("b");
+        list.add("d");
+        list.add("z");
+        list.add("e");
+        list.add("g");
+        list.add("f");
+        list.add("1");
+        list.add("t");
+        list.add("a");
+        list.add("y");
+        list.add("c");
+
+        int size = list.size();
+
+        list.sort((first, second) -> {
+            int shorterLength = (first.length() > second.length()) ? second.length() : first.length();
+            for (int i = 0; i < shorterLength; i++) {
+                char f = first.toLowerCase().charAt(i);
+                char s = second.toLowerCase().charAt(i);
+                if (f != s) {
+                    return s - f;
+                }
+            }
+            return 1;
+        });
+
+        assertEquals(list.size(), size);
+        assertEquals(list.getValue(0), "z");
+        assertEquals(list.getValue(list.size() - 1), "1");
+    }
 }

@@ -110,27 +110,13 @@ public class CustomList {
     }
 
     public void sort(CustomComparators c) {
-        /*String[] tempArray = this.array;
-        String x;
-        String y;
-
-        for (int i = 0; i < this.size; i++) {
-            for (int j = 0; j < this.size; j++) {
-                if (j + 1 < this.size && c.compare(this.array[j], this.array[j + 1]) > 0) {
-                    x = tempArray[j];
-                    y = tempArray[j + 1];
-                    tempArray[j] = y;
-                    tempArray[j + 1] = x;
-                }
-            }
-        }*/
         String[] tempArray = this.array;
         String current;
 
         for (int i = 0; i < this.size; i++) {
             int j = i;
             current = this.array[i];
-            while (j > 0 && c.compare(current,tempArray[j - 1]) < 0) {
+            while (j > 0 && c.compare(current, tempArray[j - 1]) < 0) {
                 tempArray[j] = tempArray[j - 1];
                 tempArray[j - 1] = current;
                 j--;
