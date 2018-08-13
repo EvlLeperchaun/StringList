@@ -2,6 +2,7 @@ package EntryPoint;
 
 import Comparators.AlphabeticalSort;
 import ListProject.CustomList;
+import Generators.ListGenerator;
 import org.junit.Test;
 
 
@@ -75,7 +76,7 @@ public class EntryPoint {
         System.out.printf("Time: %d",endTime-startTime);
     }
 
-    @Test
+
     public void test() {
         String[] someArray = new String[3];
         someArray[0] = "one11";
@@ -102,5 +103,12 @@ public class EntryPoint {
         someArray=tempArray2;
         System.out.println(String.join(",", someArray));
         assertEquals(someArray.length, 1);
+    }
+    @Test
+    public void generateList(){
+        ListGenerator randList = new ListGenerator();
+        String josh = "josh";
+        int notReallyJosh = (int)josh;
+
     }
 }
