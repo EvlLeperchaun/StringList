@@ -77,7 +77,8 @@ public class EntryPoint {
         */
         ListGenerator randList = new ListGenerator();
         String path ="src/main/resources/random_list.txt";
-        CustomList fileTest=new CustomList(path);
+        CustomList fileTest=new CustomList();
+        fileTest.fileSort(path);
     }
 
 
