@@ -4,7 +4,13 @@ package ListProject;
 import Comparators.AlphabeticalSort;
 import Interfaces.CustomComparators;
 
+import java.io.File;
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.Comparator;
+import java.util.Random;
+import java.util.Scanner;
 
 public class CustomList {
     private int capacity; //total number of items that can be held in array
@@ -21,6 +27,12 @@ public class CustomList {
         this.size = 0;
         this.currentIndex = 0;
         this.array = new String[this.capacity];
+    }
+
+    public CustomList(String path){
+        this.capacity = 0;
+        this.currentIndex=0;
+        this.fileSort(path);
     }
 
     public String print() {
@@ -100,7 +112,7 @@ public class CustomList {
         for (int i = 0; i < this.size; i++) {
             int j = i;
             current = this.array[i];
-            while (j > 0 && c.compare(current,tempArray[j - 1]) < 0) {
+            while (j > 0 && c.compare(current, tempArray[j - 1]) < 0) {
                 tempArray[j] = tempArray[j - 1];
                 tempArray[j - 1] = current;
                 j--;
@@ -125,6 +137,40 @@ public class CustomList {
         }
 
         this.array = tempArray;
+    }
+
+    public void fileSort(String path) {
+        BufferedWriter bw = null;
+
+        try {
+            File file = new File(path);
+            FileWriter fw = new FileWriter(new File("src/main/resources/sorted_list.txt"), false);
+            bw = new BufferedWriter(fw);
+            Scanner scan = new Scanner(file);
+
+            while (scan.hasNextLine()) {
+                String x = scan.nextLine();
+                this.add(x);
+            }
+            scan.close();
+            this.sort();
+
+            for (int i=0; i<this.capacity;i++){
+                bw.write(this.array[i]);
+                bw.newLine();
+            }
+
+        } catch (IOException e) {
+            System.out.printf("IO exception\n");
+        } finally {
+            if (!(bw == null)) {
+                try {
+                    bw.close();
+                } catch (IOException e) {
+
+                }
+            }
+        }
     }
 }
 

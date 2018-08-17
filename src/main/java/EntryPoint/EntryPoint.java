@@ -60,7 +60,7 @@ public class EntryPoint {
 
         //get value out of bounds
         System.out.printf("Looking for index out of bounds: %s\n",list1.getValue(-1));
-        */
+
         int numberOfEntries=50000;
         CustomList list1=new CustomList(numberOfEntries);
         for (int i = numberOfEntries; i > 0; i--) {
@@ -74,6 +74,10 @@ public class EntryPoint {
             System.out.printf("Value:%s\n", list1.getValue(i));
         }
         System.out.printf("Time: %d",endTime-startTime);
+        */
+        ListGenerator randList = new ListGenerator();
+        String path ="src/main/resources/random_list.txt";
+        CustomList fileTest=new CustomList(path);
     }
 
 
@@ -107,8 +111,8 @@ public class EntryPoint {
     @Test
     public void generateList(){
         ListGenerator randList = new ListGenerator();
-        String josh = "josh";
-        int notReallyJosh = (int)josh;
+        String path ="src/main/resources/random_list.txt";
+        CustomList fileTest=new CustomList(path);
 
     }
 }
