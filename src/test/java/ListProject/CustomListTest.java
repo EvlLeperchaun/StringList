@@ -54,4 +54,116 @@ public class CustomListTest {
         assertEquals(list.size(), 1);
     }
 
+    @Test
+    public void testAlphaSort() {
+        CustomList list = new CustomList();
+        list.add("b");
+        list.add("d");
+        list.add("z");
+        list.add("1");
+        list.add("e");
+        list.add("E");
+        list.add("g");
+        list.add("f");
+        list.add("t");
+        list.add("a");
+        list.add("y");
+        list.add("c");
+
+        int size = list.size();
+
+        list.sort((first, second) -> {
+            int shorterLength = (first.length() > second.length()) ? second.length() : first.length();
+            for (int i = 0; i < shorterLength; i++) {
+                char f = first.toLowerCase().charAt(i);
+                char s = second.toLowerCase().charAt(i);
+                if (f != s) {
+                    return f - s;
+                }
+            }
+            return second.length()-first.length();
+        });
+
+        assertEquals(list.size(), size);
+        assertEquals(list.getValue(0), "1");
+        assertEquals(list.getValue(list.size() - 1), "z");
+    }
+
+    @Test
+    public void testReverseAlphaSort() {
+        CustomList list = new CustomList();
+        list.add("b");
+        list.add("d");
+        list.add("z");
+        list.add("e");
+        list.add("E");
+        list.add("g");
+        list.add("f");
+        list.add("1");
+        list.add("t");
+        list.add("a");
+        list.add("y");
+        list.add("c");
+
+        int size = list.size();
+
+        list.sort((first, second) -> {
+            int shorterLength = (first.length() > second.length()) ? second.length() : first.length();
+            for (int i = 0; i < shorterLength; i++) {
+                char f = first.toLowerCase().charAt(i);
+                char s = second.toLowerCase().charAt(i);
+                if (f != s) {
+                    return s - f;
+                }
+            }
+            return second.length()-first.length();
+        });
+
+        assertEquals(list.size(), size);
+        assertEquals(list.getValue(0), "z");
+        assertEquals(list.getValue(list.size() - 1), "1");
+    }
+
+    @Test
+    public void testWordSort() {
+        CustomList list = new CustomList();
+        list.add("bryan");
+        list.add("davis");
+        list.add("zeb");
+        list.add("zebra");
+        list.add("elephant");
+        list.add("Elephant");
+        list.add("giant");
+        list.add("freud");
+        list.add("lesbians");
+        list.add("tests");
+        list.add("alphabet");
+        list.add("alphabetical");
+        list.add("josh");
+        list.add("yesplz");
+        list.add("chris");
+        list.add("cone");
+
+        int size = list.size();
+
+        list.sort((first, second) -> {
+            int shorterLength = (first.length() > second.length()) ? second.length() : first.length();
+            for (int i = 0; i < shorterLength; i++) {
+                char f = first.toLowerCase().charAt(i);
+                char s = second.toLowerCase().charAt(i);
+                if (f != s) {
+                    return s - f;
+                }
+            }
+            return second.length()-first.length();
+        });
+
+        for (int i = 0; i < list.size(); i++) {
+            System.out.println(list.getValue(i));
+        }
+
+        assertEquals(list.size(), size);
+        assertEquals(list.getValue(0), "zebra");
+        assertEquals(list.getValue(list.size() - 1), "alphabet");
+    }
 }
