@@ -13,7 +13,7 @@ import static junit.framework.TestCase.assertEquals;
 
 public class EntryPoint {
     public static void main(String args[]) {
-        int numberOfEntries = 50000;
+        int numberOfEntries = 5;
         CustomList list1 = new CustomList(numberOfEntries);
         for (int i = numberOfEntries; i > 0; i--) {
             list1.add(Integer.toString(i));
@@ -25,6 +25,7 @@ public class EntryPoint {
         for (int i = 0; i < list1.length(); i++) {
             System.out.printf("Value:%s\n", list1.getValue(i));
         }
+
         System.out.printf("Time: %d", endTime - startTime);
     }
 }

@@ -4,6 +4,8 @@ package ListProject;
 import Interfaces.CustomComparators;
 
 import java.util.Comparator;
+import java.util.Iterator;
+import java.util.function.Consumer;
 
 public class CustomList {
     private int capacity; //total number of items that can be held in array
@@ -125,6 +127,40 @@ public class CustomList {
         }
 
         this.array = tempArray;
+    }
+
+    public Iterator iterator() {
+        return new CustomIterator(this);
+    }
+
+    private class CustomIterator implements Iterator<CustomList> {
+
+        private CustomList customList;
+
+        CustomIterator(CustomList l) {
+            this.customList = l;
+        }
+
+        @Override
+        public boolean hasNext() {
+            return false;
+        }
+
+        @Override
+        public CustomList next() {
+            return null;
+        }
+
+        @Override
+        public void remove() {
+
+        }
+
+        @Override
+        public void forEachRemaining(Consumer<? super CustomList> action) {
+
+        }
+
     }
 }
 
