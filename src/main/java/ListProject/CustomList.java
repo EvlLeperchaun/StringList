@@ -7,7 +7,7 @@ import java.util.Comparator;
 import java.util.Iterator;
 import java.util.function.Consumer;
 
-public class CustomList {
+public class CustomList implements Iterable<String> {
     private int capacity; //total number of items that can be held in array
     private int currentIndex; //current index of array
     private int size; //current number of items in array
@@ -129,11 +129,11 @@ public class CustomList {
         this.array = tempArray;
     }
 
-    public Iterator iterator() {
+    public Iterator<String> iterator() {
         return new CustomIterator(this);
     }
 
-    private class CustomIterator implements Iterator<CustomList> {
+    private class CustomIterator implements Iterator<String> {
 
         private CustomList customList;
 
@@ -147,18 +147,8 @@ public class CustomList {
         }
 
         @Override
-        public CustomList next() {
+        public String next() {
             return null;
-        }
-
-        @Override
-        public void remove() {
-
-        }
-
-        @Override
-        public void forEachRemaining(Consumer<? super CustomList> action) {
-
         }
 
     }
