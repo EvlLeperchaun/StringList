@@ -15,7 +15,6 @@ import java.util.function.Consumer;
 
 public class CustomList implements Iterable<String> {
     private int capacity; //total number of items that can be held in array
-    private int currentIndex; //current index of array
     private int size; //current number of items in array
     private String[] array;
 
@@ -26,13 +25,11 @@ public class CustomList implements Iterable<String> {
     public CustomList(int capacity) {
         this.capacity = capacity;
         this.size = 0;
-        this.currentIndex = 0;
         this.array = new String[this.capacity];
     }
 
     public CustomList(String path) {
         this.capacity = 0;
-        this.currentIndex = 0;
         this.fileSort(path);
     }
 
@@ -47,9 +44,8 @@ public class CustomList implements Iterable<String> {
 
     public void add(String newString) {
         //Index is not full
-        if (this.currentIndex < this.capacity) {
-            this.array[this.currentIndex] = newString;
-            this.currentIndex++;
+        if (this.size < this.capacity) {
+            this.array[this.size] = newString;
             this.size++;
         } else {
             //Index is full.
@@ -57,10 +53,9 @@ public class CustomList implements Iterable<String> {
             for (int i = 0; i < this.capacity; i++) {
                 tempArray[i] = this.array[i];
             }
-            tempArray[this.currentIndex] = newString;
+            tempArray[this.size] = newString;
             this.capacity++;
             this.size++;
-            this.currentIndex++;
             this.array = new String[this.capacity];
             this.array = tempArray;
         }
@@ -77,7 +72,6 @@ public class CustomList implements Iterable<String> {
             }
         }
         this.capacity--;
-        this.currentIndex--;
         this.size--;
         this.array = new String[this.capacity];
         this.array = tempArray;
@@ -165,7 +159,7 @@ public class CustomList implements Iterable<String> {
         public String next() {
             if (this.hasNext()) {
                 this.customList.size++;
-                return this.customList.getValue(this.customList.currentIndex - 1);
+                return this.customList.getValue(this.customList.size - 1);
             } else {
                 return null;
             }
