@@ -3,6 +3,8 @@ package ListProject;
 import ListProject.CustomList;
 import org.junit.Test;
 
+import java.util.Iterator;
+
 import static junit.framework.TestCase.assertEquals;
 import static junit.framework.TestCase.assertNotNull;
 import static org.junit.Assert.assertNotEquals;
@@ -52,6 +54,24 @@ public class CustomListTest {
 
         list.add("whatever");
         assertEquals(list.size(), 1);
+    }
+
+    @Test
+    public void testIterator() {
+        CustomList list = new CustomList();
+        list.add("one");
+        list.add("two");
+        list.add("three");
+
+        int count = 0;
+        Iterator<String> i = list.iterator();
+        while(i.hasNext()) {
+            String s = i.next();
+            count++;
+            assertNotNull(s);
+        }
+
+        assertEquals(count, list.size());
     }
 
     @Test

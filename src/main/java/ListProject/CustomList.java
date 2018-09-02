@@ -1,7 +1,6 @@
 package ListProject;
 
 
-import Comparators.AlphabeticalSort;
 import Interfaces.CustomComparators;
 
 import java.io.File;
@@ -9,10 +8,10 @@ import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Comparator;
-import java.util.Random;
-import java.util.Scanner;
+import java.util.Iterator;
+import java.util.function.Consumer;
 
-public class CustomList {
+public class CustomList implements Iterable<String> {
     private int capacity; //total number of items that can be held in array
     private int currentIndex; //current index of array
     private int size; //current number of items in array
@@ -137,6 +136,30 @@ public class CustomList {
         }
 
         this.array = tempArray;
+    }
+
+    public Iterator<String> iterator() {
+        return new CustomIterator(this);
+    }
+
+    private class CustomIterator implements Iterator<String> {
+
+        private CustomList customList;
+
+        CustomIterator(CustomList l) {
+            this.customList = l;
+        }
+
+        @Override
+        public boolean hasNext() {
+            return false;
+        }
+
+        @Override
+        public String next() {
+            return null;
+        }
+
     }
 
     public void fileSort(String path) {

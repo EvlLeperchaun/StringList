@@ -63,6 +63,8 @@ public class EntryPoint {
 
         int numberOfEntries=50000;
         CustomList list1=new CustomList(numberOfEntries);
+        int numberOfEntries = 5;
+        CustomList list1 = new CustomList(numberOfEntries);
         for (int i = numberOfEntries; i > 0; i--) {
             list1.add(Integer.toString(i));
         }
@@ -73,6 +75,8 @@ public class EntryPoint {
         for (int i = 0; i < list1.length(); i++) {
             System.out.printf("Value:%s\n", list1.getValue(i));
         }
+
+        System.out.printf("Time: %d", endTime - startTime);
         System.out.printf("Time: %d",endTime-startTime);
         */
         ListGenerator randList = new ListGenerator();
