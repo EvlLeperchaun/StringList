@@ -1,6 +1,7 @@
 package ListProject;
 
 
+import Comparators.AlphabeticalSort;
 import Interfaces.CustomComparators;
 
 import java.io.File;
@@ -9,6 +10,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Comparator;
 import java.util.Iterator;
+import java.util.Scanner;
 import java.util.function.Consumer;
 
 public class CustomList implements Iterable<String> {
@@ -28,9 +30,9 @@ public class CustomList implements Iterable<String> {
         this.array = new String[this.capacity];
     }
 
-    public CustomList(String path){
+    public CustomList(String path) {
         this.capacity = 0;
-        this.currentIndex=0;
+        this.currentIndex = 0;
         this.fileSort(path);
     }
 
@@ -148,18 +150,27 @@ public class CustomList implements Iterable<String> {
 
         CustomIterator(CustomList l) {
             this.customList = l;
+            this.customList.size=0;
         }
 
         @Override
         public boolean hasNext() {
-            return false;
+            if (this.customList.size == this.customList.capacity) {
+                return false;
+            }
+            return true;
         }
 
         @Override
         public String next() {
-            return null;
-        }
+            if (this.hasNext()) {
+                this.customList.size++;
+                return this.customList.getValue(this.customList.currentIndex - 1);
+            } else {
+                return null;
+            }
 
+        }
     }
 
     public void fileSort(String path) {
@@ -178,7 +189,7 @@ public class CustomList implements Iterable<String> {
             scan.close();
             this.sort();
 
-            for (int i=0; i<this.capacity;i++){
+            for (int i = 0; i < this.capacity; i++) {
                 bw.write(this.array[i]);
                 bw.newLine();
             }
