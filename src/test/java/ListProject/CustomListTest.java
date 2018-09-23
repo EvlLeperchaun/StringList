@@ -14,7 +14,7 @@ public class CustomListTest {
     @Test
     public void testAddElement() {
         CustomList list = new CustomList();
-        String sampleValue = "this is a test value";
+        int sampleValue = 1;
 
         list.add(sampleValue);
 
@@ -26,11 +26,12 @@ public class CustomListTest {
     @Test
     public void testDeleteElement() {
         CustomList list = new CustomList();
-        list.add("one");
-        list.add("two");
-        list.add("three");
-        list.add("four");
+        list.add(1);
+        list.add(2);
+        list.add(3);
+        list.add(4);
         list.add("five");
+        list.print();
 
         list.remove(2);
 

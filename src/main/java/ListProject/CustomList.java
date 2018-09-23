@@ -10,13 +10,14 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Comparator;
 import java.util.Iterator;
+import java.util.Objects;
 import java.util.Scanner;
 import java.util.function.Consumer;
 
-public class CustomList implements Iterable<String> {
+public class CustomList<T> implements Iterable {
     private int capacity; //total number of items that can be held in array
     private int size; //current number of items in array
-    private String[] array;
+    private Object[] array;
 
     public CustomList() {
         this(1);
@@ -25,7 +26,7 @@ public class CustomList implements Iterable<String> {
     public CustomList(int capacity) {
         this.capacity = capacity;
         this.size = 0;
-        this.array = new String[this.capacity];
+        this.array = new Object[this.capacity];
     }
 
     public CustomList(String path) {
@@ -33,8 +34,10 @@ public class CustomList implements Iterable<String> {
         this.fileSort(path);
     }
 
-    public String print() {
-        return "This list has " + this.size + " elements.";
+    public void print() {
+        for (int i = 0; i < this.size; i++) {
+            System.out.printf(this.array[i]+"\n");
+        }
     }
 
     public int length() {
@@ -42,28 +45,28 @@ public class CustomList implements Iterable<String> {
         return this.capacity;
     }
 
-    public void add(String newString) {
+    public void add(T newEntry) {
         //Index is not full
         if (this.size < this.capacity) {
-            this.array[this.size] = newString;
+            this.array[this.size] = newEntry;
             this.size++;
         } else {
             //Index is full.
-            String[] tempArray = new String[this.capacity + 1];
+            Object[] tempArray = new Object[this.capacity + 1];
             for (int i = 0; i < this.capacity; i++) {
                 tempArray[i] = this.array[i];
             }
-            tempArray[this.size] = newString;
+            tempArray[this.size] = newEntry;
             this.capacity++;
             this.size++;
-            this.array = new String[this.capacity];
+            this.array = new Object[this.capacity];
             this.array = tempArray;
         }
 
     }
 
     public void remove(int index) {
-        String[] tempArray = new String[this.capacity];
+        Object[] tempArray = new Object[this.capacity];
         for (int i = 0; i < this.capacity; i++) {
             if (i != index && i < index) {
                 tempArray[i] = this.array[i];
@@ -73,11 +76,11 @@ public class CustomList implements Iterable<String> {
         }
         this.capacity--;
         this.size--;
-        this.array = new String[this.capacity];
+        this.array = new Object[this.capacity];
         this.array = tempArray;
     }
 
-    public int indexOf(String value) {
+    public int indexOf(T value) {
         //returns -1 if value not found
         for (int i = 0; i < this.capacity; i++) {
             if (this.array[i] == value) {
@@ -87,13 +90,12 @@ public class CustomList implements Iterable<String> {
         return -1;
     }
 
-    public String getValue(int index) {
-        return (index >= 0 && index < this.capacity) ? this.array[index] : "";
+    public T getValue(int index) {
+        Objects.checkIndex(index, this.capacity);
+        return (T) this.array[index];
+
     }
 
-    public String toString() {
-        return "String";
-    }
 
     public int size() {
         return this.size;
@@ -101,13 +103,13 @@ public class CustomList implements Iterable<String> {
 
     public void sort() {
         //default: sort alpha
-        String[] tempArray = this.array;
-        String current;
+        Object[] tempArray = this.array;
+        Object current;
         CustomComparators c = new AlphabeticalSort();
         for (int i = 0; i < this.size; i++) {
             int j = i;
             current = this.array[i];
-            while (j > 0 && c.compare(current, tempArray[j - 1]) < 0) {
+            while (j > 0 && c.compare(current.toString(), tempArray[j - 1].toString()) < 0) {
                 tempArray[j] = tempArray[j - 1];
                 tempArray[j - 1] = current;
                 j--;
@@ -118,13 +120,13 @@ public class CustomList implements Iterable<String> {
     }
 
     public void sort(CustomComparators c) {
-        String[] tempArray = this.array;
-        String current;
+        Object[] tempArray = this.array;
+        Object current;
 
         for (int i = 0; i < this.size; i++) {
             int j = i;
             current = this.array[i];
-            while (j > 0 && c.compare(current, tempArray[j - 1]) < 0) {
+            while (j > 0 && c.compare(current.toString(), tempArray[j - 1].toString()) < 0) {
                 tempArray[j] = tempArray[j - 1];
                 tempArray[j - 1] = current;
                 j--;
@@ -134,32 +136,33 @@ public class CustomList implements Iterable<String> {
         this.array = tempArray;
     }
 
-    public Iterator<String> iterator() {
+    public Iterator<T> iterator() {
         return new CustomIterator(this);
     }
 
-    private class CustomIterator implements Iterator<String> {
+    private class CustomIterator implements Iterator<T> {
 
         private CustomList customList;
+        private int index;
 
         CustomIterator(CustomList l) {
             this.customList = l;
-            this.customList.size=0;
+            this.index = 0;
         }
 
         @Override
         public boolean hasNext() {
-            if (this.customList.size == this.customList.capacity) {
+            if (this.index == this.customList.size) {
                 return false;
             }
             return true;
         }
 
         @Override
-        public String next() {
+        public T next() {
             if (this.hasNext()) {
-                this.customList.size++;
-                return this.customList.getValue(this.customList.size - 1);
+                this.index++;
+                return (T) this.customList.getValue(this.customList.size - 1);
             } else {
                 return null;
             }
@@ -178,13 +181,13 @@ public class CustomList implements Iterable<String> {
 
             while (scan.hasNextLine()) {
                 String x = scan.nextLine();
-                this.add(x);
+                this.add((T) x);
             }
             scan.close();
             this.sort();
 
             for (int i = 0; i < this.capacity; i++) {
-                bw.write(this.array[i]);
+                bw.write(this.array[i].toString());
                 bw.newLine();
             }
 
