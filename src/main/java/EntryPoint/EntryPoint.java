@@ -14,8 +14,11 @@ import static junit.framework.TestCase.assertEquals;
 
 public class EntryPoint {
     public static void main(String args[]) {
-        /*CustomList list1 = new CustomList();
-        CustomList list2 = new CustomList(2);
+        CustomList<String> list1 = new CustomList<>();
+        CustomList<String> list2 = new CustomList<>(2);
+        CustomList<Integer>list3=new CustomList<>();
+
+
         list1.add("4");
         list1.add("6");
         list1.add("2");
@@ -25,7 +28,13 @@ public class EntryPoint {
         list1.add("5");
         list2.add("Josh");
         list2.add("Bryan");
+        list3.add(2);
+        list3.add(5);
 
+        System.out.println(list3.getValue(0));
+
+
+/*
         //test add
         System.out.printf("Add.\n");
         for (int i = 0; i < list1.length(); i++) {

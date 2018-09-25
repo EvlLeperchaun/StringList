@@ -8,16 +8,12 @@ import java.io.File;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.Comparator;
-import java.util.Iterator;
-import java.util.Objects;
-import java.util.Scanner;
-import java.util.function.Consumer;
+import java.util.*;
 
 public class CustomList<T> implements Iterable {
     private int capacity; //total number of items that can be held in array
     private int size; //current number of items in array
-    private Object[] array;
+    private T[] array;
 
     public CustomList() {
         this(1);
@@ -26,7 +22,8 @@ public class CustomList<T> implements Iterable {
     public CustomList(int capacity) {
         this.capacity = capacity;
         this.size = 0;
-        this.array = new Object[this.capacity];
+        this.array = (T[]) new Object[capacity];
+
     }
 
     public CustomList(String path) {
@@ -36,7 +33,7 @@ public class CustomList<T> implements Iterable {
 
     public void print() {
         for (int i = 0; i < this.size; i++) {
-            System.out.printf(this.array[i]+"\n");
+            System.out.printf(this.array[i] + "\n");
         }
     }
 
@@ -52,21 +49,21 @@ public class CustomList<T> implements Iterable {
             this.size++;
         } else {
             //Index is full.
-            Object[] tempArray = new Object[this.capacity + 1];
+            T[] tempArray = (T[]) new Object[this.capacity + 1];
             for (int i = 0; i < this.capacity; i++) {
                 tempArray[i] = this.array[i];
             }
             tempArray[this.size] = newEntry;
             this.capacity++;
             this.size++;
-            this.array = new Object[this.capacity];
+            this.array = (T[]) new Object[this.capacity];
             this.array = tempArray;
         }
 
     }
 
     public void remove(int index) {
-        Object[] tempArray = new Object[this.capacity];
+        T[] tempArray = (T[]) new Object[this.capacity];
         for (int i = 0; i < this.capacity; i++) {
             if (i != index && i < index) {
                 tempArray[i] = this.array[i];
@@ -76,7 +73,7 @@ public class CustomList<T> implements Iterable {
         }
         this.capacity--;
         this.size--;
-        this.array = new Object[this.capacity];
+        this.array = (T[]) new Object[this.capacity];
         this.array = tempArray;
     }
 
@@ -92,7 +89,7 @@ public class CustomList<T> implements Iterable {
 
     public T getValue(int index) {
         Objects.checkIndex(index, this.capacity);
-        return (T) this.array[index];
+        return this.array[index];
 
     }
 
@@ -103,8 +100,8 @@ public class CustomList<T> implements Iterable {
 
     public void sort() {
         //default: sort alpha
-        Object[] tempArray = this.array;
-        Object current;
+        T[] tempArray = this.array;
+        T current;
         CustomComparators c = new AlphabeticalSort();
         for (int i = 0; i < this.size; i++) {
             int j = i;
@@ -120,8 +117,8 @@ public class CustomList<T> implements Iterable {
     }
 
     public void sort(CustomComparators c) {
-        Object[] tempArray = this.array;
-        Object current;
+        T[] tempArray = this.array;
+        T current;
 
         for (int i = 0; i < this.size; i++) {
             int j = i;
@@ -142,10 +139,10 @@ public class CustomList<T> implements Iterable {
 
     private class CustomIterator implements Iterator<T> {
 
-        private CustomList customList;
+        private CustomList<T> customList;
         private int index;
 
-        CustomIterator(CustomList l) {
+        CustomIterator(CustomList<T> l) {
             this.customList = l;
             this.index = 0;
         }
@@ -162,7 +159,7 @@ public class CustomList<T> implements Iterable {
         public T next() {
             if (this.hasNext()) {
                 this.index++;
-                return (T) this.customList.getValue(this.customList.size - 1);
+                return this.customList.getValue(this.customList.size - 1);
             } else {
                 return null;
             }
